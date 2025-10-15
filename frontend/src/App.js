@@ -43,7 +43,7 @@ function App() {
     }
   };
 
-  return (
+ return (
     <div className="app">
       <h1>Weather Dashboard</h1>
 
@@ -60,35 +60,38 @@ function App() {
       {error && <p className="error">{error}</p>}
 
       {weather && (
-        <div className="weather-card">
-          <h2>
-            {weather.city}, {weather.country}
-          </h2>
-          <img
-            src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
-            alt="icon"
-          />
-          <p>{weather.description}</p>
-          <h1>{Math.round(weather.temperature)}°C</h1>
-          <p>Feels like: {Math.round(weather.feels_like)}°C</p>
+        <div className="dashboard">
+          <div className="top-box">
+            <div>
+              <h2>
+                {weather.city}, {weather.country}
+              </h2>
+              <p className="description">{weather.description}</p>
+            </div>
+            <div className="temp-box">
+              <h1>{Math.round(weather.temperature)}°C</h1>
+              <p>Feels like {Math.round(weather.feels_like)}°C</p>
+            </div>
+            <div className="extra-box">
+              <p>🌇 Sunset:</p>
+              <p>
+                {new Date(weather.sunset * 1000).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </p>
+            </div>
+          </div>
 
-          <div className="details">
+          <div className="middle-box">
             <div>💧 Humidity: {weather.humidity}%</div>
+            <div>🌅 Sunrise: {new Date(weather.sunrise * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
+            <div>🌇 Sunset: {new Date(weather.sunset * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
             <div>🌬️ Wind: {weather.wind_speed} m/s</div>
-            <div>
-               Sunrise:{" "}
-              {new Date(weather.sunrise * 1000).toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-            </div>
-            <div>
-               Sunset:{" "}
-              {new Date(weather.sunset * 1000).toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-            </div>
+          </div>
+
+          <div className="bottom-box">
+            <p>(Chart or extra info coming soon...)</p>
           </div>
         </div>
       )}
