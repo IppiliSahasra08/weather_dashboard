@@ -73,7 +73,7 @@ function App() {
               <p>Feels like {Math.round(weather.feels_like)}°C</p>
             </div>
             <div className="extra-box">
-              <p>🌇 Sunset:</p>
+              <p> Sunset:</p>
               <p>
                 {new Date(weather.sunset * 1000).toLocaleTimeString([], {
                   hour: "2-digit",
@@ -85,8 +85,8 @@ function App() {
 
           <div className="middle-box">
             <div>💧 Humidity: {weather.humidity}%</div>
-            <div>🌅 Sunrise: {new Date(weather.sunrise * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
-            <div>🌇 Sunset: {new Date(weather.sunset * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
+            <div> Sunrise: {new Date(weather.sunrise * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
+            <div>Sunset: {new Date(weather.sunset * 1000).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div>
             <div>🌬️ Wind: {weather.wind_speed} m/s</div>
           </div>
 
