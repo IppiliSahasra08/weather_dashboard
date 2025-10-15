@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+  background: linear-gradient(135deg, #e7d6f5 0%, #ecd3f0 100%);
   height: 100vh;
   overflow: hidden;
 }
@@ -46,4 +46,51 @@ header {
 
 .search-bar button:hover {
   background-color: #357abd;
+}
+
+.app {
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  background: linear-gradient(180deg, #e0e7ff, #f9fafb);
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.search-box {
+  margin: 20px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  width: 200px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  margin-left: 10px;
+  border-radius: 10px;
+  background-color: #4f46e5;
+  color: white;
+  cursor: pointer;
+}
+
+.weather-card {
+  background: white;
+  max-width: 400px;
+  margin: 30px auto;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 15px;
+  gap: 10px;
+  font-size: 0.95rem;
 }

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import WeatherCard from "./WeatherCard";
 import "./App.css";
 
 function App() {
@@ -27,10 +26,15 @@ function App() {
       // Extract relevant data from OpenWeatherMap JSON
       const weatherData = {
         city: data.name,
+        country: data.sys.country,
         temperature: data.main.temp,
         humidity: data.main.humidity,
         description: data.weather[0].description,
         icon: data.weather[0].icon,
+        feels_like : data.main.feels_like,
+        sunrise : data.sys.sunrise,
+        sunset : data.sys.sunset,
+        wind_speed : data.wind.speed,
       };
 
       setWeather(weatherData);
@@ -41,22 +45,53 @@ function App() {
 
   return (
     <div className="app">
-      <header>
-        <h1>Weather Dashboard</h1>
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Enter city name..."
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
+      <h1>Weather Dashboard</h1>
+
+      <div className="search-box">
+        <input
+          type="text"
+          placeholder="Enter city..."
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        />
+        <button onClick={fetchWeather}>Get Weather</button>
+      </div>
+
+      {error && <p className="error">{error}</p>}
+
+      {weather && (
+        <div className="weather-card">
+          <h2>
+            {weather.city}, {weather.country}
+          </h2>
+          <img
+            src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
+            alt="icon"
           />
-          <button onClick={fetchWeather}>Get Weather</button>
+          <p>{weather.description}</p>
+          <h1>{Math.round(weather.temperature)}°C</h1>
+          <p>Feels like: {Math.round(weather.feels_like)}°C</p>
+
+          <div className="details">
+            <div>💧 Humidity: {weather.humidity}%</div>
+            <div>🌬️ Wind: {weather.wind_speed} m/s</div>
+            <div>
+               Sunrise:{" "}
+              {new Date(weather.sunrise * 1000).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </div>
+            <div>
+               Sunset:{" "}
+              {new Date(weather.sunset * 1000).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </div>
+          </div>
         </div>
-      </header>
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
-      {weather && <WeatherCard data={weather} />}
+      )}
     </div>
   );
 }
